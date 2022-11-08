@@ -13,3 +13,8 @@ interface ShopDetail {
   Hours: Date;
   Image: string;
 }
+
+//店舗一覧表示オブジェクト
+interface ShopListResponse {
+  shops: Shop[];
+}
