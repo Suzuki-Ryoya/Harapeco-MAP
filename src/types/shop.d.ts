@@ -1,3 +1,5 @@
+//APIの店舗仕様
+
 // 店舗オブジェクト
 interface Shop {
   id: string;
