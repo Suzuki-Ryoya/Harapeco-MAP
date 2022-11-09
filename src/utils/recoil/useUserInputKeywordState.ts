@@ -6,6 +6,7 @@ import {
   useSetRecoilState,
 } from 'recoil';
 
+//ユーザーのキーワードを定義する
 export const userInputKeywordState = atom<string>({
   key: 'UserInputKeyword',
   default: '',
