@@ -12,3 +12,18 @@ interface UseUserInputKeywordMutatorType {
   setSearchKeyword: (s: string) => void;
 }
 
+//ユーザーが入力したキーワードをセットする関数
+export const useUserInputKeywordMutator =
+  (): UseUserInputKeywordMutatorType => {
+    const setState: SetterOrUpdater<string> = useSetRecoilState(
+      userInputKeywordState,
+    );
+    const setSearchKeyword = React.useCallback(
+      (s: string) => {
+        setState(s);
+      },
+      [setState],
+    );
+
+    return { setSearchKeyword };
+  };
