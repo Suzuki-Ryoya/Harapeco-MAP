@@ -7,3 +7,8 @@ export const userInputKeywordState = atom<string>({
 export const useUserInputKeywordState = (): string => {
   return useRecoilValue(userInputKeywordState);
 };
+
+interface UseUserInputKeywordMutatorType {
+  setSearchKeyword: (s: string) => void;
+}
+
