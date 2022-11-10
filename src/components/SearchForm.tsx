@@ -42,7 +42,10 @@ export const SearchForm: React.FC<SearchFormProps> = ({
   const [searchGenreKey, setSearchGenreKey] = useState<string>('');
   return (
     <>
-      <Form>
+      <form ref={formRef} onSubmit={handlerOnSubmitSearch}>
+        <input type="search" name="seachWord" placeholder="Enter keyword …" />
+        <button>click</button>
+      </form>
         <div>
           <Label id="serach_area">エリア</Label>
           <TextField
