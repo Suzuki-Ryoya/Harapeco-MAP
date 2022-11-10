@@ -1,6 +1,8 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { fetcher } from '@/utils/fetcher';
 
+// もとのROOT URLの取得
+
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
