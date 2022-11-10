@@ -1,3 +1,6 @@
+import type { NextApiRequest, NextApiResponse } from 'next';
+import { fetcher } from '@/utils/fetcher';
+
 const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
