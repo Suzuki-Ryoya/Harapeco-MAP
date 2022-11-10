@@ -1,7 +1,43 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-export const SearchForm: React.FC = () => {
+interface SearchFormProps {
+  userSetKeyword: string;
+  fallbackData: any;
+}
+
+export const SearchForm: React.FC<SearchFormProps> = ({
+  userSetKeyword,
+  fallbackData,
+}) => {
+  const { setSearchKeyword } = useUserInputKeywordMutator();
+
+  const { mutate } = useShopDataSWR(userSetKeyword, fallbackData);
+
+  const formRef: React.RefObject<HTMLFormElement> =
+    React.useRef<HTMLFormElement>(null);
+
+  const handlerOnSubmitSearch = async (
+    e: React.SyntheticEvent,
+  ): Promise<void> => {
+    e.preventDefault();
+
+    const target = e.target as typeof e.target & {
+      seachWord: { value: string };
+    };
+
+    // ユーザーが入力するキーワード
+    const seachWordValue: string = target.seachWord.value;
+
+    setSearchKeyword(seachWordValue);
+
+    const mutationData = await fetcher(`api/groumet/${seachWordValue}`);
+
+    mutate(mutationData).catch((error) => {
+      throw error;
+    });
+  };
+
   const [searchAreaKey, setSearchAreaKey] = useState<string>('');
   const [searchGenreKey, setSearchGenreKey] = useState<string>('');
   return (
