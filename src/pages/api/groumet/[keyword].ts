@@ -12,5 +12,11 @@ const handler = async (
     return;
   }
 
+  const API_URL_ROOT = process.env.API_URL_ROOT;
+
+  const keywordString: string = Array.isArray(keyword)
+    ? keyword.join(' ')
+    : keyword;
+
 };
 export default handler;
