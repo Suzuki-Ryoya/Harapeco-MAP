@@ -49,6 +49,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({
         <input type="search" name="seachWord" placeholder="Enter keyword …" />
         <button>click</button>
       </form>
+      {/* <Form onSubmit={handlerOnSubmitSearch}>
         <div>
           <Label id="serach_area">エリア</Label>
           <TextField
@@ -68,7 +69,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({
           ></TextField>
         </div>
         <SearchButton>検索</SearchButton>
-      </Form>
+      </Form> */}
     </>
   );
 };
