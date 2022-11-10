@@ -21,5 +21,12 @@ const handler = async (
     ? keyword.join(' ')
     : keyword;
 
+  const API_URL =
+    keyword === '' || typeof keyword === 'undefined' || keyword == null
+      ? API_URL_ROOT
+      : `${API_URL_ROOT}&keyword=${encodeURI(keywordString)}`;
+
+  const data = await fetcher(API_URL);
+  res.end(JSON.stringify(data));
 };
 export default handler;
