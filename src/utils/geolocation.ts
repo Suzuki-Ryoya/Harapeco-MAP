@@ -1,3 +1,9 @@
+import { PositionError, Position } from '@/types/geolocation';
+import { resolve } from 'path';
+import { env } from 'process';
+import { useEffect, useState, useRef } from 'react';
+import { fetcher } from './fetcher';
+
 export const currentFetcher = () => {
   return new Promise(
     (res: (value?: Position) => void, rej: (reson?: PositionError) => void) => {
