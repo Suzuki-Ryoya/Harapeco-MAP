@@ -75,14 +75,36 @@ export const GeolocationSearchForm: React.FC = () => {
   return (
     <>
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <ReactSelect
-          options={rangeOptions}
-          value={rangeOptions.find((x) => {
-            x.value;
-          })}
-          onChange={(v) => selectOnchange(v?.value)}
-          // onChange={(v) => console.log(v?.value)}
-        ></ReactSelect>
+        <Controller
+          name="range"
+          control={control}
+          render={({ field }) => (
+            // return (
+            //   <ReactSelect
+            //     options={rangeOptions}
+            //     value={rangeOptions.find((x) => {
+            //       x.value;
+            //     })}
+            //     onChange={(v) => selectOnchange(v?.value)}
+            //     // onChange={(v) => console.log(v?.value)}
+            //   ></ReactSelect>
+            // );
+            <FormControl>
+              <InputLabel id="range-label">範囲</InputLabel>
+              <Select labelId="range-label" label="範囲" {...field}>
+                <MenuItem value="" sx={{ color: 'gray' }}>
+                  未選択
+                </MenuItem>
+                <MenuItem value={'1'}>300m</MenuItem>
+                <MenuItem value={'2'}>500m</MenuItem>
+                <MenuItem value={'3'}>1000m</MenuItem>
+                <MenuItem value={'4'}>2000m</MenuItem>
+                <MenuItem value={'5'}>3000m</MenuItem>
+              </Select>
+            </FormControl>
+          )}
+        />
+
         <div>
           <Button type="submit">検索する</Button>
         </div>
