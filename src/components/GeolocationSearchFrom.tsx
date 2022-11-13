@@ -40,6 +40,8 @@ export const GeolocationSearchForm: React.FC = () => {
 
   // geolocation APIを呼び出す
   const { data } = useSWR('utils/geolocation', locationFetcher);
+  const { control, handleSubmit } = useForm<FromProps>();
+  const onSubmit = () => {
   if (typeof data === 'undefined' || typeof data.coords === 'undefined') {
     return <div>現在地を取得できません</div>;
   }
