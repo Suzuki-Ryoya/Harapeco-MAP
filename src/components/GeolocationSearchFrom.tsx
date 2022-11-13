@@ -27,6 +27,7 @@ const rangeOptions: SelectOption[] = [
 export const GeolocationSearchForm: React.FC = () => {
   return (
     <>
+      <ReactSelect options={rangeOptions}></ReactSelect>
       <div>sample</div>
     </>
   );
