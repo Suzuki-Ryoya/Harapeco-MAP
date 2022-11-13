@@ -29,6 +29,15 @@ const rangeOptions: SelectOption[] = [
   },
 ];
 export const GeolocationSearchForm: React.FC = () => {
+  const [value, setValue] = useState<string>('');
+
+  const selectOnchange = (value: string | undefined) => {
+    if (value === undefined) {
+      return;
+    }
+    setValue(value);
+  };
+
   const { data } = useSWR('utils/geolocation', locationFetcher);
   if (typeof data === 'undefined' || typeof data.coords === 'undefined') {
     return <div>現在地を取得できません</div>;
