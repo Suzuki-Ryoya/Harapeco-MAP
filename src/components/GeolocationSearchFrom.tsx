@@ -53,8 +53,19 @@ export const GeolocationSearchForm: React.FC = () => {
 
   return (
     <>
-      <ReactSelect options={rangeOptions}></ReactSelect>
-      <div>sample</div>
+      <Form onSubmit={handleSubmit(onSubmit)}>
+        <ReactSelect
+          options={rangeOptions}
+          value={rangeOptions.find((x) => {
+            x.value;
+          })}
+          onChange={(v) => selectOnchange(v?.value)}
+          // onChange={(v) => console.log(v?.value)}
+        ></ReactSelect>
+        <div>
+          <Button type="submit">検索する</Button>
+        </div>
+      </Form>
     </>
   );
 };
