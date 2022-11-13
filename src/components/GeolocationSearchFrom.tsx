@@ -2,6 +2,10 @@ import { locationFetcher } from '@/utils/geolocation';
 import { url } from 'inspector';
 import React from 'react';
 import useSWR from 'swr';
+import { SelectOption } from './form/selectOptions';
+import ReactSelect, { SelectInstance } from 'react-select';
+import styled from 'styled-components';
+
 const rangeOptions: SelectOption[] = [
   {
     label: '300m',
