@@ -2,7 +2,6 @@ import { PositionError, Position } from '@/types/geolocation';
 import { resolve } from 'path';
 import { env } from 'process';
 import { useEffect, useState, useRef } from 'react';
-import { fetcher } from './fetcher';
 
 // geolocation APIをラップ化してfetcherとしてuseSWRで呼び出す
 export const fetcher = () => {
