@@ -4,7 +4,7 @@ import { env } from 'process';
 import { useEffect, useState, useRef } from 'react';
 import { fetcher } from './fetcher';
 
-export const currentFetcher = () => {
+// geolocation APIをラップ化してfetcherとしてuseSWRで呼び出す
   return new Promise(
     (res: (value?: Position) => void, rej: (reson?: PositionError) => void) => {
       navigator.geolocation.getCurrentPosition(res, rej);
