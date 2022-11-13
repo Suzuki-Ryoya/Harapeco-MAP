@@ -34,6 +34,7 @@ export const SearchForm: React.FC<SearchFormProps> = ({
 
     setSearchKeyword(seachWordValue);
 
+    //APIへのルーティングパス
     const mutationData = await fetcher(`api/groumet/${seachWordValue}`);
 
     mutate(mutationData).catch((error) => {
