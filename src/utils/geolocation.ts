@@ -12,6 +12,7 @@ export const currentFetcher = () => {
   );
 };
 
+// TODO: 現在地取得に加えて範囲を指定したい
 export const geoFetcher = () => {
   return new Promise((res, rej) => {
     const onSuccess = async (position: any) => {
