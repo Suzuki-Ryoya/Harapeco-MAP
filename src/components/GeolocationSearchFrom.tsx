@@ -40,8 +40,7 @@ export const GeolocationSearchForm: React.FC = () => {
 
   // geolocation APIを呼び出す
   const { data } = useSWR('utils/geolocation', locationFetcher);
-  const { control, handleSubmit } = useForm<FromProps>();
-  const onSubmit = () => {
+  const onSubmit: SubmitHandler<FromProps> = (props: FromProps) => {
   if (typeof data === 'undefined' || typeof data.coords === 'undefined') {
     return <div>現在地を取得できません</div>;
   }
@@ -55,13 +54,16 @@ export const GeolocationSearchForm: React.FC = () => {
 
   const lat = String(data.coords.latitude);
   const lng = String(data.coords.longitude);
+    const ran = String(props.range);
 
   const API_URL =
     typeof lat === 'undefined' || typeof lng === 'undefined'
       ? API_URL_ROOT
       : `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?format=json&key=6c471fbf6c289813&lat=${encodeURI(
           lat,
-        )}&lng=${encodeURI(lng)}`;
+          )}&lng=${encodeURI(lng)}&range=${encodeURI(ran)}`;
+    console.log(JSON.stringify(API_URL));
+  };
 
   return (
     <>
