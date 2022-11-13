@@ -29,6 +29,28 @@ const rangeOptions: SelectOption[] = [
   },
 ];
 export const GeolocationSearchForm: React.FC = () => {
+  const { data } = useSWR('utils/geolocation', locationFetcher);
+  if (typeof data === 'undefined' || typeof data.coords === 'undefined') {
+    return <div>現在地を取得できません</div>;
+  }
+
+  console.log(data.coords.latitude);
+  console.log(data.coords.longitude);
+
+  console.log(process.env.NEXT_PUBLIC_API_URL_ROOT);
+
+  const API_URL_ROOT = process.env.NEXT_PUBLIC_API_URL_ROOT;
+
+  const lat = String(data.coords.latitude);
+  const lng = String(data.coords.longitude);
+
+  const API_URL =
+    typeof lat === 'undefined' || typeof lng === 'undefined'
+      ? API_URL_ROOT
+      : `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?format=json&key=6c471fbf6c289813&lat=${encodeURI(
+          lat,
+        )}&lng=${encodeURI(lng)}`;
+
   return (
     <>
       <ReactSelect options={rangeOptions}></ReactSelect>
