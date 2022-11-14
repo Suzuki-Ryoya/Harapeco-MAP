@@ -114,3 +114,7 @@ export const GeolocationSearchForm: React.FC = () => {
     </>
   );
 };
+
+const Form = styled.form``;
+
+const Button = styled.button``;
