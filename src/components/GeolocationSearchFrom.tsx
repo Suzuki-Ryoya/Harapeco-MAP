@@ -7,6 +7,9 @@ import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 // フォーム内で必要なprops(現状は指定するエリアの範囲のみ)
+interface FromProps {
+  range: string;
+}
 
 const rangeOptions: SelectOption[] = [
   {
