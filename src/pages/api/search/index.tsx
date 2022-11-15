@@ -39,7 +39,6 @@ const handler = async (
   if (typeof API_URL === 'undefined') return;
 
   const data = await fetcher(API_URL);
-  console.log(data);
 
   res.send(JSON.stringify(data));
 };
