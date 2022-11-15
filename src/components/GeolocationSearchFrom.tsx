@@ -5,10 +5,17 @@ import { SelectOption } from './form/selectOptions';
 import styled from 'styled-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { Navigate, useNavigate } from 'react-router-dom';
+import Router, { useRouter } from 'next/router';
+import fetcher from '@/utils/fetcher';
 
 // フォーム内で必要なprops(現状は指定するエリアの範囲のみ)
 interface FromProps {
   range: string;
+}
+
+interface FormState {
+  url: string;
 }
 
 const rangeOptions: SelectOption[] = [
@@ -43,14 +50,19 @@ export const GeolocationSearchForm: React.FC = () => {
     setValue(value);
   };
 
+  const [input, setInput] = useState<any>();
+
   // geolocation APIを呼び出す
   const { data } = useSWR('utils/geolocation', locationFetcher);
 
+  setInput(data);
   const { control, handleSubmit } = useForm<FromProps>({
     defaultValues: {
       range: '4',
     },
   });
+
+  const router = useRouter();
 
   const onSubmit: SubmitHandler<FromProps> = (props: FromProps) => {
     if (typeof data === 'undefined' || typeof data.coords === 'undefined') {
@@ -58,18 +70,31 @@ export const GeolocationSearchForm: React.FC = () => {
     }
 
     const API_URL_ROOT = process.env.NEXT_PUBLIC_API_URL_ROOT;
-
     const lat = String(data.coords.latitude);
     const lng = String(data.coords.longitude);
     const ran = String(props.range);
+    const sample = fetcher(
+      'http;//localhost:3000/api/search?lat={}&lng={}&ran={}',
+    );
 
-    const API_URL =
+    // const urlState: FormState = {
+    //   url:
+    //     typeof lat === 'undefined' || typeof lng === 'undefined'
+    //       ? API_URL_ROOT
+    //       : `${API_URL_ROOT}&lat=${encodeURI(lat)}&lng=${encodeURI(
+    //           lng,
+    //         )}&range=${encodeURI(ran)}`,
+    // };
+
+    const url =
       typeof lat === 'undefined' || typeof lng === 'undefined'
         ? API_URL_ROOT
-        : `http://webservice.recruit.co.jp/hotpepper/gourmet/v1/?format=json&key=6c471fbf6c289813&lat=${encodeURI(
-            lat,
-          )}&lng=${encodeURI(lng)}&range=${encodeURI(ran)}`;
-    console.log(JSON.stringify(API_URL));
+        : `${API_URL_ROOT}&lat=${encodeURI(lat)}&lng=${encodeURI(
+            lng,
+          )}&range=${encodeURI(ran)}`;
+
+    router.push({ pathname: '/shops', query: { input: url } });
+    // console.log(JSON.stringify(API_URL));
   };
 
   return (
