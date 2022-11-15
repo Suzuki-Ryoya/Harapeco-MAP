@@ -21,6 +21,10 @@ const handler = async (
     return;
   }
 
+  const latString: string = Array.isArray(lat) ? lat.join(' ') : lat;
+  const lngString: string = Array.isArray(lng) ? lng.join(' ') : lng;
+  const ranString: string = Array.isArray(ran) ? ran.join(' ') : ran;
+
 
   console.log(API_URL);
 
