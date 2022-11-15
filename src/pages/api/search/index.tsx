@@ -30,6 +30,6 @@ const handler = async (
   const data = await fetcher(API_URL);
   console.log(data);
 
-  res.end(JSON.stringify(data));
+  res.send(JSON.stringify(data));
 };
 export default handler;
