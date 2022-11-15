@@ -12,7 +12,15 @@ const handler = async (
   const lng = req.query.lng;
   const ran = req.query.ran;
 
-  const API_URL = `${process.env.API_URL_ROOT}=${process.env.API_KEY}&lat=${lat}`;
+  if (
+    typeof process.env.API_URL_ROOT === 'undefined' ||
+    typeof lat === 'undefined' ||
+    typeof lng === 'undefined' ||
+    typeof ran === 'undefined'
+  ) {
+    return;
+  }
+
 
   console.log(API_URL);
 
