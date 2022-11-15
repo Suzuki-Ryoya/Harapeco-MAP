@@ -7,7 +7,8 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
-  // http;//localhost:3000/api/search?lat={}&lng={}&ran={}
+  const API_URL_ROOT = process.env.API_URL_ROOT;
+
   const lat = req.query.lat;
   const lng = req.query.lng;
   const ran = req.query.ran;
@@ -25,6 +26,12 @@ const handler = async (
   const lngString: string = Array.isArray(lng) ? lng.join(' ') : lng;
   const ranString: string = Array.isArray(ran) ? ran.join(' ') : ran;
 
+  const API_URL =
+    typeof lat === 'undefined' || typeof lng === 'undefined'
+      ? API_URL_ROOT
+      : `${API_URL_ROOT}&lat=${encodeURI(latString)}&lng=${encodeURI(
+          lngString,
+        )}&range=${encodeURI(ranString)}`;
 
   console.log(API_URL);
 
