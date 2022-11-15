@@ -1,6 +1,6 @@
 // TODO: Promiseの型をレスポンスエラーの型に変更する
 const fetcher = async (url: string): Promise<any> => {
-  const response = await fetch(url, { mode: 'cors' });
+  const response = await fetch(url);
   return (await response.json()) as any;
 };
 
