@@ -35,7 +35,6 @@ const handler = async (
 
   console.log(API_URL);
 
-  // 変更するURLを入れないといけない
   if (typeof API_URL === 'undefined') return;
 
   const data = await fetcher(API_URL);
