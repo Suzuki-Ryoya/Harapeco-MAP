@@ -1,5 +1,5 @@
 import useSWR from 'swr';
-import { fetcher } from '../fetcher';
+import fetcher from '../fetcher';
 
 //TODO: fallbackDataの型をanyからレスポンスの型に変更する
 export const useShopDataSWR = (userSetKeyword: string, fallbackData: any) => {
