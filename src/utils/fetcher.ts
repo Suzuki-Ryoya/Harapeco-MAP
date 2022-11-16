@@ -1,7 +1,9 @@
+import { ShopListResponseType } from '@/types/shop';
+
 // TODO: Promiseの型をレスポンスエラーの型に変更する
-const fetcher = async (url: string): Promise<any> => {
+const fetcher = async (url: string): Promise<ShopListResponseType> => {
   const response = await fetch(url);
-  return (await response.json()) as any;
+  return (await response.json()) as ShopListResponseType;
 };
 
 export default fetcher;
