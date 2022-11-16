@@ -32,7 +32,7 @@ const ShopListPage: React.FC = () => {
       console.log(response.results.shop);
       setShops(response.results.shop);
     };
-    fetchUsers();
+    fetchShops();
   }, [lat, lng, range]);
 
   return (
