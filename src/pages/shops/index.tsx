@@ -1,5 +1,4 @@
 import fetcher from '@/utils/fetcher';
-import { useShopListSWR } from '@/utils/hooks/useShopDataSWR';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
@@ -10,9 +9,6 @@ import { locationFetcher } from '@/utils/geolocation';
 import { ConstructionOutlined } from '@mui/icons-material';
 import { Shop, ShopListResponseType } from '@/types/shop';
 
-interface input {
-  url: string;
-}
 const ShopListPage: React.FC = () => {
   const router = useRouter();
 
