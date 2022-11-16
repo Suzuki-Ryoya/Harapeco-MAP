@@ -23,6 +23,7 @@ const handler = async (
     typeof shopId === 'undefined' || shopId == null
       ? API_URL_ROOT
       : `${API_URL_ROOT}&id=${encodeURI(shopIdString)}`;
+
   const data = await fetcher(API_URL);
   res.end(JSON.stringify(data));
 };
