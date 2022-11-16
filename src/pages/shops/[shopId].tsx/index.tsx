@@ -17,3 +17,9 @@ import styled from 'styled-components';
     fetchShops();
   }, [shopId]);
 
+  return (
+    <>
+      <div>sample</div>
+    </>
+  );
+};
