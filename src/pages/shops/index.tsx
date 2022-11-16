@@ -3,10 +3,12 @@ import { useShopListSWR } from '@/utils/hooks/useShopDataSWR';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import useSWR from 'swr';
 import { locationFetcher } from '@/utils/geolocation';
+import { ConstructionOutlined } from '@mui/icons-material';
+import { Shop, ShopListResponseType } from '@/types/shop';
 
 interface input {
   url: string;
