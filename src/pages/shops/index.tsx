@@ -14,7 +14,8 @@ interface input {
 const ShopListPage: React.FC = () => {
   const router = useRouter();
 
-  const url = router.query.input;
+  //現在地を呼び出す
+  const { data } = useSWR('utils/geolocation', locationFetcher);
 
   const data = useShopListSWR(url);
 
