@@ -8,6 +8,7 @@ import useSWR from 'swr';
 import { locationFetcher } from '@/utils/geolocation';
 import { ConstructionOutlined } from '@mui/icons-material';
 import { Shop, ShopListResponseType } from '@/types/shop';
+import styled from 'styled-components';
 
 const ShopListPage: React.FC = () => {
   const router = useRouter();
@@ -23,13 +24,12 @@ const ShopListPage: React.FC = () => {
   const range = String(router.query.ran);
 
   useEffect(() => {
-    const fetchUsers = async () => {
+    const fetchShops = async () => {
       const response = await fetcher(
         `http://localhost:3000/api/search?lat=${encodeURI(
           lat,
         )}3&lng=${encodeURI(lng)}&ran=${encodeURI(range)}`,
       );
-      console.log(response.results.shop);
       setShops(response.results.shop);
     };
     fetchShops();
