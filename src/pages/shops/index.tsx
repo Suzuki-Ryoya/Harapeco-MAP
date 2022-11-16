@@ -61,3 +61,7 @@ const ShopListPage: React.FC = () => {
 };
 
 export default ShopListPage;
+
+const Container = styled.div``;
+
+const Image = styled.img``;
