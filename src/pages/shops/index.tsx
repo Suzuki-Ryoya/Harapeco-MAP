@@ -35,6 +35,7 @@ const ShopListPage: React.FC = () => {
     fetchShops();
   }, [lat, lng, range]);
 
+  //TODO cssのスタイルとUIの設計を行う
   return (
     <>
       <Container>
