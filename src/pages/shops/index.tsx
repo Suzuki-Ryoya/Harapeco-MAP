@@ -37,7 +37,25 @@ const ShopListPage: React.FC = () => {
 
   return (
     <>
-      <div>Hello </div>
+      <Container>
+        <div>
+          {shops ? (
+            shops.map((shop: Shop) => {
+              return (
+                <div key={shop.id}>
+                  <h1>{shop.name}</h1>
+                  <Image src={shop.photo.pc.l} alt={shop.name} />
+                  <p>
+                    <span>アクセス方法:{shop.access}</span>
+                  </p>
+                </div>
+              );
+            })
+          ) : (
+            <div>Loading ...</div>
+          )}
+        </div>
+      </Container>
     </>
   );
 };
