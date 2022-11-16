@@ -7,7 +7,7 @@ const handler = async (
   req: NextApiRequest,
   res: NextApiResponse,
 ): Promise<void> => {
-  const API_URL_ROOT = process.env.API_URL_ROOT;
+  const API_URL_ROOT = process.env.NEXT_PUBLIC_API_URL_ROOT;
 
   const lat = req.query.lat;
   const lng = req.query.lng;
@@ -33,12 +33,10 @@ const handler = async (
           lngString,
         )}&range=${encodeURI(ranString)}`;
 
-  console.log(API_URL);
-
   if (typeof API_URL === 'undefined') return;
 
   const data = await fetcher(API_URL);
 
-  res.send(JSON.stringify(data));
+  res.end(JSON.stringify(data));
 };
 export default handler;
