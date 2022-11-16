@@ -17,8 +17,6 @@ interface ShopDetail {
 }
 
 //店舗一覧表示オブジェクト
-export interface ShopListResponseType {
-  results: {
-    shop: Shop[];
-  };
+interface ShopListResponse {
+  shops: Shop[];
 }
