@@ -19,11 +19,25 @@ const ShopListPage: React.FC = () => {
   //現在地を呼び出す
   const { data } = useSWR('utils/geolocation', locationFetcher);
 
-  const data = useShopListSWR(url);
+  // shopsの配列に取得した店舗を入れていく
+  const [shops, setShops] = useState<Shop[]>();
 
-  // console.log(data?.result);
+  const lat = String(data?.coords.latitude);
+  const lng = String(data?.coords.longitude);
+  const range = String(router.query.ran);
 
-  data.then((res) => console.log(res));
+  useEffect(() => {
+    const fetchUsers = async () => {
+      const response = await fetcher(
+        `http://localhost:3000/api/search?lat=${encodeURI(
+          lat,
+        )}3&lng=${encodeURI(lng)}&ran=${encodeURI(range)}`,
+      );
+      console.log(response.results.shop);
+      setShops(response.results.shop);
+    };
+    fetchUsers();
+  }, [lat, lng, range]);
 
   return (
     <>
