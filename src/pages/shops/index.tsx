@@ -9,6 +9,7 @@ import { locationFetcher } from '@/utils/geolocation';
 import { ConstructionOutlined } from '@mui/icons-material';
 import { Shop, ShopListResponseType } from '@/types/shop';
 import styled from 'styled-components';
+import Link from 'next/link';
 
 const ShopListPage: React.FC = () => {
   const router = useRouter();
@@ -43,13 +44,22 @@ const ShopListPage: React.FC = () => {
           {shops ? (
             shops.map((shop: Shop) => {
               return (
-                <div key={shop.id}>
-                  <h1>{shop.name}</h1>
-                  <Image src={shop.photo.pc.l} alt={shop.name} />
-                  <p>
-                    <span>アクセス方法:{shop.access}</span>
-                  </p>
-                </div>
+                <Link
+                  key={shop.id}
+                  href={{
+                    pathname: '/shops/[shopId]',
+                    query: { shopId: shop.id },
+                  }}
+                >
+                  <div>
+                    <h1>{shop.name}</h1>
+                    <h2>{shop.id}</h2>
+                    <Image src={shop.photo.pc.l} alt={shop.name} />
+                    <p>
+                      <span>アクセス方法:{shop.access}</span>
+                    </p>
+                  </div>
+                </Link>
               );
             })
           ) : (
