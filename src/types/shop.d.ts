@@ -8,7 +8,7 @@ interface Shop {
   photo: {
     pc: Photo_PC;
   };
-  adress: string;
+  address: string;
   open: string;
 }
 
