@@ -23,3 +23,9 @@ import styled from 'styled-components';
     </>
   );
 };
+
+export default Sample;
+
+const Container = styled.div``;
+
+const Image = styled.img``;
