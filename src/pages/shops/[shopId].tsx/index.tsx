@@ -21,7 +21,28 @@ const Sample: React.FC = () => {
 
   return (
     <>
-      <div>sample</div>
+      <Container>
+        <div>
+          {shops ? (
+            shops.map((shop: Shop) => {
+              return (
+                <div key={shop.id}>
+                  <h1>{shop.name}</h1>
+                  <Image src={shop.photo.pc.m} alt={shop.name} />
+                  <p>
+                    <span>住所:{shop.address}</span>
+                  </p>
+                  <div>
+                    <p>営業時間:{shop.open}</p>
+                  </div>
+                </div>
+              );
+            })
+          ) : (
+            <div>Loading ...</div>
+          )}
+        </div>
+      </Container>
     </>
   );
 };
