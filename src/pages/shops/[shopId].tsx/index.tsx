@@ -30,6 +30,10 @@ const Sample: React.FC = () => {
               return (
               <ShopContent key={shop.id}>
                 <ShopInfoContent key={shop.id}>
+                  <ShopInfo>
+                  </ShopInfo>
+                  <ShopDetail>
+                  </ShopDetail>
                 </ShopInfoContent>
                 <ShopAirticleContent key={shop.id}>
                 </ShopAirticleContent>
