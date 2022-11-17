@@ -1,7 +1,6 @@
 import { locationFetcher } from '@/utils/geolocation';
 import React, { useState } from 'react';
 import useSWR from 'swr';
-import { SelectOption } from './form/selectOptions';
 import styled from 'styled-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
