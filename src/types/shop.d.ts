@@ -13,6 +13,8 @@ interface Shop {
   station_name: string;
   genre: Genre;
   close: string;
+  catch: string;
+  budget: Buget;
 }
 
 // サムネイル画像のPC版オブジェクト
@@ -29,6 +31,11 @@ interface Photo_Moblile {
 
 interface Genre {
   name: string;
+}
+
+interface Buget {
+  name: string;
+  average: string;
 }
 
 //店舗一覧表示オブジェクト

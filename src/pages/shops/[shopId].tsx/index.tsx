@@ -24,26 +24,41 @@ const Sample: React.FC = () => {
   return (
     <>
       <Container>
-        <div>
-          {shops ? (
-            shops.map((shop: Shop) => {
-              return (
-                <div key={shop.id}>
-                  <h1>{shop.name}</h1>
-                  <Image src={shop.photo.pc.m} alt={shop.name} />
-                  <p>
-                    <span>住所:{shop.address}</span>
-                  </p>
-                  <div>
-                    <p>営業時間:{shop.open}</p>
-                  </div>
-                </div>
-              );
-            })
-          ) : (
-            <div>Loading ...</div>
-          )}
-        </div>
+        {shops ? (
+          shops.map((shop: Shop) => {
+            return (
+              <ShopContent key={shop.id}>
+                <ShopInfoContent key={shop.id}>
+                  <ShopInfo>
+                    <ShopName>{shop.name}</ShopName>
+                    <ShopSection>
+                      <ShopItem>最寄り駅:{shop.station_name}駅</ShopItem>
+                      <ShopItem>ジャンル:{shop.genre.name}</ShopItem>
+                    </ShopSection>
+                  </ShopInfo>
+                  <ShopDetail>
+                    <ShopOfficalInfo>
+                      <ShopItem>
+                        {shop.open} / {shop.close}
+                      </ShopItem>
+                      <ShopItem>予算:{shop.budget.name}</ShopItem>
+                      <ShopItem>住所:{shop.address}</ShopItem>
+                    </ShopOfficalInfo>
+                  </ShopDetail>
+                </ShopInfoContent>
+                <ShopAirticleContent key={shop.id}>
+                  <Image
+                    src={`${shop.photo.pc.l}`}
+                    alt="画像がありません"
+                  ></Image>
+                  <ShopCatch>{shop.catch}</ShopCatch>
+                </ShopAirticleContent>
+              </ShopContent>
+            );
+          })
+        ) : (
+          <div>Loading ...</div>
+        )}
       </Container>
     </>
   );
@@ -53,4 +68,60 @@ export default Sample;
 
 const Container = styled.div``;
 
-const Image = styled.img``;
+const ShopContent = styled.div`
+  width: 70%;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+
+  margin: 3rem auto;
+  padding: 40px;
+
+  background-color: #fff;
+`;
+
+const ShopInfoContent = styled.div``;
+
+const ShopInfo = styled.div`
+  border-bottom: 0.2px solid #595960;
+`;
+
+const ShopSection = styled.div`
+  display: flex;
+`;
+
+const ShopName = styled.div`
+  width: 90%;
+
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: #ffaf69;
+`;
+
+const ShopOfficalInfo = styled.div`
+  padding: 10px;
+`;
+
+const ShopItem = styled.p`
+  padding-right: 20px;
+
+  font-weight: bold;
+  font-size: 12px;
+  color: #595960;
+`;
+
+const ShopDetail = styled.div``;
+
+const ShopAirticleContent = styled.div`
+  padding-top: 40px;
+  border-top: 0.2px solid #595960;
+`;
+
+const Image = styled.img`
+  width: 60%;
+`;
+
+const ShopCatch = styled.h2`
+  /* margin: auto 40px; */
+
+  text-align: center;
+  color: #13131e;
+`;
