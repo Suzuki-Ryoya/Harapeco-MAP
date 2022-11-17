@@ -98,7 +98,7 @@ export const GeolocationSearchForm: React.FC = () => {
 const FormPage = styled.div`
   width: 100%;
   height: 1200px;
-  background-color: #ffaf69;
+  background-color: #f37433;
 `;
 
 const FormContainer = styled.div`
@@ -110,7 +110,7 @@ const FormContainer = styled.div`
   //可変にしないとポジションの関係でエラーが起きる
   width: 45rem;
   height: 30rem;
-  background-color: #ffaf69;
+  background-color: #f37433;
 `;
 
 const Title = styled.div`
