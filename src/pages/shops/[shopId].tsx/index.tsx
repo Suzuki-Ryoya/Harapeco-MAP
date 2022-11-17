@@ -28,16 +28,12 @@ const Sample: React.FC = () => {
           {shops ? (
             shops.map((shop: Shop) => {
               return (
-                <div key={shop.id}>
-                  <h1>{shop.name}</h1>
-                  <Image src={shop.photo.pc.m} alt={shop.name} />
-                  <p>
-                    <span>住所:{shop.address}</span>
-                  </p>
-                  <div>
-                    <p>営業時間:{shop.open}</p>
-                  </div>
-                </div>
+              <ShopContent key={shop.id}>
+                <ShopInfoContent key={shop.id}>
+                </ShopInfoContent>
+                <ShopAirticleContent key={shop.id}>
+                </ShopAirticleContent>
+              </ShopContent>
               );
             })
           ) : (
