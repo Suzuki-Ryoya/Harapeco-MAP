@@ -1,13 +1,9 @@
 import fetcher from '@/utils/fetcher';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import useSWR from 'swr';
 import { locationFetcher } from '@/utils/geolocation';
-import { ConstructionOutlined } from '@mui/icons-material';
-import { Shop, ShopListResponseType } from '@/types/shop';
+import { Shop } from '@/types/shop';
 import styled from 'styled-components';
 import Link from 'next/link';
 import { GiWalk } from 'react-icons/gi';
@@ -108,7 +104,7 @@ const ShopCard = styled.div`
 const ShopInfo = styled.div`
   width: 100%;
 `;
-const Title = styled.h1`
+const ShopName = styled.h1`
   color: #ffaf69;
 `;
 
