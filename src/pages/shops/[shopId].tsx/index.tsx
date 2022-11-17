@@ -31,8 +31,20 @@ const Sample: React.FC = () => {
               <ShopContent key={shop.id}>
                 <ShopInfoContent key={shop.id}>
                   <ShopInfo>
+                    <ShopName>{shop.name}</ShopName>
+                    <ShopSection>
+                      <ShopItem>最寄り駅:{shop.station_name}駅</ShopItem>
+                      <ShopItem>ジャンル:{shop.genre.name}</ShopItem>
+                    </ShopSection>
                   </ShopInfo>
                   <ShopDetail>
+                    <ShopOfficalInfo>
+                      <ShopItem>
+                        {shop.open} / {shop.close}
+                      </ShopItem>
+                      <ShopItem>予算:{shop.budget.name}</ShopItem>
+                      <ShopItem>住所:{shop.address}</ShopItem>
+                    </ShopOfficalInfo>
                   </ShopDetail>
                 </ShopInfoContent>
                 <ShopAirticleContent key={shop.id}>
