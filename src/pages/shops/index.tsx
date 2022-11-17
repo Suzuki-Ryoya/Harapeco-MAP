@@ -10,6 +10,8 @@ import { ConstructionOutlined } from '@mui/icons-material';
 import { Shop, ShopListResponseType } from '@/types/shop';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { GiWalk } from 'react-icons/gi';
+import { GrRestaurant } from 'react-icons/gr';
 
 const ShopListPage: React.FC = () => {
   const router = useRouter();
@@ -55,10 +57,8 @@ const ShopListPage: React.FC = () => {
                     <h1>{shop.name}</h1>
                     <h2>{shop.id}</h2>
                     <Image src={shop.photo.pc.l} alt={shop.name} />
-                    <p>
-                      <span>アクセス方法:{shop.access}</span>
-                    </p>
-                  </div>
+                          <GrRestaurant />
+                        <GiWalk />
                 </Link>
               );
             })
