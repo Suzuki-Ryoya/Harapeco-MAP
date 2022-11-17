@@ -12,8 +12,9 @@ import ReactSelect from 'react-select';
 
 // フォーム内で必要なprops(現状は指定するエリアの範囲のみ)
 
-interface FormState {
-  url: string;
+interface SelectOption {
+  label: string;
+  value: string;
 }
 
 const rangeOptions: SelectOption[] = [
