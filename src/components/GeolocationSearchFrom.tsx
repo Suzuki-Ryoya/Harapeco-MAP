@@ -8,6 +8,7 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import Router, { useRouter } from 'next/router';
 import fetcher from '@/utils/fetcher';
 import ReactSelect from 'react-select';
+import { CiForkAndKnife } from 'react-icons/ci';
 
 // フォーム内で必要なprops(現状は指定するエリアの範囲のみ)
 
@@ -63,7 +64,8 @@ export const GeolocationSearchForm: React.FC = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
+            <CiForkAndKnife />
+            <CiForkAndKnife />
         <ReactSelect
           id="select-option"
           options={rangeOptions}
