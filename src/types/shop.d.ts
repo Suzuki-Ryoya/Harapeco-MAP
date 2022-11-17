@@ -10,6 +10,9 @@ interface Shop {
   };
   address: string;
   open: string;
+  station_name: string;
+  genre: Genre;
+  close: string;
 }
 
 // サムネイル画像のPC版オブジェクト
@@ -22,6 +25,10 @@ interface Photo_PC {
 interface Photo_Moblile {
   l: string;
   s: string;
+}
+
+interface Genre {
+  name: string;
 }
 
 //店舗一覧表示オブジェクト
