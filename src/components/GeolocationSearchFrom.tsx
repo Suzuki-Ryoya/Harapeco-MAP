@@ -65,6 +65,7 @@ export const GeolocationSearchForm: React.FC = () => {
   return (
     <>
             <CiForkAndKnife />
+            <Title>はらぺこマップ</Title>
             <CiForkAndKnife />
         <ReactSelect
           id="select-option"
