@@ -64,6 +64,8 @@ export const GeolocationSearchForm: React.FC = () => {
 
   return (
     <>
+      <FormPage>
+        <FormContainer className="form-container">
           <Title>
             <CiForkAndKnife />
             <Title>はらぺこマップ</Title>
@@ -86,6 +88,8 @@ export const GeolocationSearchForm: React.FC = () => {
               <Button type="submit"> 検索 </Button>
             </SearchButton>
       </Form>
+        </FormContainer>
+      </FormPage>
     </>
   );
 };
