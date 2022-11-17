@@ -94,6 +94,8 @@ export const GeolocationSearchForm: React.FC = () => {
   );
 };
 
+// TODO: レスポンシブ対応に変更する
+
 const FormPage = styled.div`
   width: 100%;
   height: 1200px;
