@@ -8,20 +8,19 @@ interface Shop {
   photo: {
     pc: Photo_PC;
   };
-}
-
-// 店舗詳細オブジェクト
-interface ShopDetail {
-  text: string;
   address: string;
-  Hours: Date;
-  Image: string;
+  open: string;
 }
 
 // サムネイル画像のPC版オブジェクト
 interface Photo_PC {
   l: string;
   m: string;
+  s: string;
+}
+
+interface Photo_Moblile {
+  l: string;
   s: string;
 }
 
