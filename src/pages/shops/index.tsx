@@ -46,6 +46,7 @@ const ShopListPage: React.FC = () => {
           {shops ? (
             shops.map((shop: Shop) => {
               return (
+              <ShopSection key={shop.id}>
                 <Link
                   key={shop.id}
                   href={{
@@ -60,10 +61,11 @@ const ShopListPage: React.FC = () => {
                           <GrRestaurant />
                         <GiWalk />
                 </Link>
+              </ShopSection>
               );
             })
           ) : (
-            <div>Loading ...</div>
+          <Loading>Loading ...</Loading>
           )}
         </div>
       </Container>
