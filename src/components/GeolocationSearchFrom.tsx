@@ -97,7 +97,7 @@ export const GeolocationSearchForm: React.FC = () => {
 // TODO: 背景色をthemeに追加
 const FormPage = styled.div`
   width: 100%;
-  height: 1200px;
+  height: 100vh;
   background-color: #f37433;
 `;
 
