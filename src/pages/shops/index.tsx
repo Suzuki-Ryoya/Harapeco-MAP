@@ -54,12 +54,11 @@ const ShopListPage: React.FC = () => {
                     query: { shopId: shop.id },
                   }}
                 >
-                  <div>
-                    <h1>{shop.name}</h1>
-                    <h2>{shop.id}</h2>
+                  <ShopCard>
                     <Image src={shop.photo.pc.l} alt={shop.name} />
                           <GrRestaurant />
                         <GiWalk />
+                  </ShopCard>
                 </Link>
               </ShopSection>
               );
