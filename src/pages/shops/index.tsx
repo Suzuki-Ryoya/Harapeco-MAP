@@ -55,7 +55,9 @@ const ShopListPage: React.FC = () => {
                   }}
                 >
                   <ShopCard>
+                    <ShopImage>
                     <Image src={shop.photo.pc.l} alt={shop.name} />
+                    </ShopImage>
                           <GrRestaurant />
                         <GiWalk />
                   </ShopCard>
