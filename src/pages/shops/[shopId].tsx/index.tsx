@@ -48,6 +48,10 @@ const Sample: React.FC = () => {
                   </ShopDetail>
                 </ShopInfoContent>
                 <ShopAirticleContent key={shop.id}>
+                  <Image
+                    src={`${shop.photo.pc.l}`}
+                    alt="画像がありません"
+                  ></Image>
                 </ShopAirticleContent>
               </ShopContent>
               );
