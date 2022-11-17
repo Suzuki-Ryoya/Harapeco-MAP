@@ -94,11 +94,11 @@ export const GeolocationSearchForm: React.FC = () => {
 };
 
 // TODO: レスポンシブ対応に変更する
-
+// TODO: 背景色をthemeに追加
 const FormPage = styled.div`
   width: 100%;
-  height: 1200px;
-  background-color: #ffaf69;
+  height: 100vh;
+  background-color: #f37433;
 `;
 
 const FormContainer = styled.div`
@@ -110,7 +110,7 @@ const FormContainer = styled.div`
   //可変にしないとポジションの関係でエラーが起きる
   width: 45rem;
   height: 30rem;
-  background-color: #ffaf69;
+  background-color: #f37433;
 `;
 
 const Title = styled.div`

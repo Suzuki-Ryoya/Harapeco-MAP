@@ -1,15 +1,13 @@
 import fetcher from '@/utils/fetcher';
-import { NextApiRequest, NextApiResponse } from 'next';
-import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
 import useSWR from 'swr';
 import { locationFetcher } from '@/utils/geolocation';
-import { ConstructionOutlined } from '@mui/icons-material';
-import { Shop, ShopListResponseType } from '@/types/shop';
+import { Shop } from '@/types/shop';
 import styled from 'styled-components';
 import Link from 'next/link';
+import { GiWalk } from 'react-icons/gi';
+import { GrRestaurant } from 'react-icons/gr';
 
 const ShopListPage: React.FC = () => {
   const router = useRouter();
@@ -40,10 +38,10 @@ const ShopListPage: React.FC = () => {
   return (
     <>
       <Container>
-        <div>
-          {shops ? (
-            shops.map((shop: Shop) => {
-              return (
+        {shops ? (
+          shops.map((shop: Shop) => {
+            return (
+              <ShopSection key={shop.id}>
                 <Link
                   key={shop.id}
                   href={{
@@ -51,21 +49,32 @@ const ShopListPage: React.FC = () => {
                     query: { shopId: shop.id },
                   }}
                 >
-                  <div>
-                    <h1>{shop.name}</h1>
-                    <h2>{shop.id}</h2>
-                    <Image src={shop.photo.pc.l} alt={shop.name} />
-                    <p>
-                      <span>アクセス方法:{shop.access}</span>
-                    </p>
-                  </div>
+                  <ShopCard>
+                    <ShopImage>
+                      <Image src={shop.photo.pc.l} alt={shop.name} />
+                    </ShopImage>
+                    <ShopInfo>
+                      <ShopName>{shop.name}</ShopName>
+                      <ShopDetail>
+                        <ShopItem>定休日:{shop.close}</ShopItem>
+                        <ShopGenre>
+                          <GrRestaurant />
+                          {shop.genre.name}
+                        </ShopGenre>
+                      </ShopDetail>
+                      <ShopAccess>
+                        <GiWalk />
+                        <ShopItem>{shop.access}</ShopItem>
+                      </ShopAccess>
+                    </ShopInfo>
+                  </ShopCard>
                 </Link>
-              );
-            })
-          ) : (
-            <div>Loading ...</div>
-          )}
-        </div>
+              </ShopSection>
+            );
+          })
+        ) : (
+          <Loading>Loading ...</Loading>
+        )}
       </Container>
     </>
   );
@@ -73,6 +82,70 @@ const ShopListPage: React.FC = () => {
 
 export default ShopListPage;
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: #fef9e8;
+  height: 100vh;
+`;
 
-const Image = styled.img``;
+const ShopSection = styled.div`
+  box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+  width: 80%;
+  margin: 0 auto 1.5rem;
+`;
+
+const ShopCard = styled.div`
+  display: flex;
+  padding: 20px;
+  width: 100%;
+
+  background-color: #fff;
+`;
+
+const ShopInfo = styled.div`
+  width: 100%;
+`;
+const ShopName = styled.h1`
+  color: #ffaf69;
+`;
+
+const ShopDetail = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  //要素が増えたら変更したい
+  padding-bottom: 30px;
+`;
+
+const ShopGenre = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ShopImage = styled.div`
+  display: inline-block;
+  width: 50%;
+  height: 15rem;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+
+const ShopAccess = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ShopItem = styled.div`
+  font-size: 18px;
+`;
+
+const Loading = styled.div`
+  width: 100%;
+  height: 100%;
+
+  background-color: #fff;
+  font-size: 5rem;
+`;
