@@ -11,7 +11,6 @@ const Sample: React.FC = () => {
   // TODO: クエリを読み込むため、再レンダリングをするとshopIdが消えてしまう
   const shopId = String(router.query.shopId);
   const [shops, setShops] = useState<Shop[]>([]);
-  console.log(shopId);
   useEffect(() => {
     const fetchShops = async () => {
       const response = await fetcher(
