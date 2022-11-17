@@ -1,7 +1,6 @@
 import { locationFetcher } from '@/utils/geolocation';
 import React, { useState } from 'react';
 import useSWR from 'swr';
-import { SelectOption } from './form/selectOptions';
 import styled from 'styled-components';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
@@ -9,11 +8,13 @@ import { Navigate, useNavigate } from 'react-router-dom';
 import Router, { useRouter } from 'next/router';
 import fetcher from '@/utils/fetcher';
 import ReactSelect from 'react-select';
+import { CiForkAndKnife } from 'react-icons/ci';
 
 // フォーム内で必要なprops(現状は指定するエリアの範囲のみ)
 
-interface FormState {
-  url: string;
+interface SelectOption {
+  label: string;
+  value: string;
 }
 
 const rangeOptions: SelectOption[] = [
@@ -63,22 +64,86 @@ export const GeolocationSearchForm: React.FC = () => {
 
   return (
     <>
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <ReactSelect
-          options={rangeOptions}
-          value={rangeOptions.find((x) => {
-            x.value;
-          })}
-          onChange={(v) => selectOnchange(v?.value)}
-        ></ReactSelect>
-        <div>
-          <Button type="submit">検索する</Button>
-        </div>
-      </Form>
+      <FormPage>
+        <FormContainer className="form-container">
+          <Title>
+            <CiForkAndKnife />
+            <Title>はらぺこマップ</Title>
+            <CiForkAndKnife />
+          </Title>
+          <Form onSubmit={handleSubmit(onSubmit)} className="form">
+            <UserSelectOption>
+              <ReactSelect
+                id="select-option"
+                placeholder="範囲を選択してください..."
+                options={rangeOptions}
+                value={rangeOptions.find((x) => {
+                  x.value;
+                })}
+                onChange={(v) => selectOnchange(v?.value)}
+              ></ReactSelect>
+            </UserSelectOption>
+            <SearchButton>
+              <Button type="submit"> 検索 </Button>
+            </SearchButton>
+          </Form>
+        </FormContainer>
+      </FormPage>
     </>
   );
 };
 
-const Form = styled.form``;
+// TODO: レスポンシブ対応に変更する
 
-const Button = styled.button``;
+const FormPage = styled.div`
+  width: 100%;
+  height: 1200px;
+  background-color: #ffaf69;
+`;
+
+const FormContainer = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  //可変にしないとポジションの関係でエラーが起きる
+  width: 45rem;
+  height: 30rem;
+  background-color: #ffaf69;
+`;
+
+const Title = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: 5rem;
+  color: #fff;
+  font-weight: bolder;
+`;
+
+const Form = styled.form`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 50%;
+`;
+
+const UserSelectOption = styled.div`
+  width: 85%;
+`;
+
+const SearchButton = styled.div``;
+
+const Button = styled.button`
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  border-color: gray;
+
+  color: #fff;
+  font-weight: bolder;
+  background-color: gray;
+`;
