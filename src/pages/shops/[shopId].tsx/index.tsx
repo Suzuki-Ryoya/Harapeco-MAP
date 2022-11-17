@@ -52,6 +52,7 @@ const Sample: React.FC = () => {
                     src={`${shop.photo.pc.l}`}
                     alt="画像がありません"
                   ></Image>
+                  <ShopCatch>{shop.catch}</ShopCatch>
                 </ShopAirticleContent>
               </ShopContent>
               );
