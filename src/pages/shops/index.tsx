@@ -42,10 +42,9 @@ const ShopListPage: React.FC = () => {
   return (
     <>
       <Container>
-        <div>
-          {shops ? (
-            shops.map((shop: Shop) => {
-              return (
+        {shops ? (
+          shops.map((shop: Shop) => {
+            return (
               <ShopSection key={shop.id}>
                 <Link
                   key={shop.id}
@@ -56,16 +55,14 @@ const ShopListPage: React.FC = () => {
                 >
                   <ShopCard>
                     <ShopImage>
-                    <Image src={shop.photo.pc.l} alt={shop.name} />
+                      <Image src={shop.photo.pc.l} alt={shop.name} />
                     </ShopImage>
                     <ShopInfo>
                       <Title>{shop.name}</Title>
                       <ShopDetail>
                         <ShopItem>定休日:{shop.close}</ShopItem>
                         <ShopGenre>
-                        </ShopGenre>
                           <GrRestaurant />
-                        </ShopGenre>
                           {shop.genre.name}
                         </ShopGenre>
                       </ShopDetail>
@@ -77,12 +74,11 @@ const ShopListPage: React.FC = () => {
                   </ShopCard>
                 </Link>
               </ShopSection>
-              );
-            })
-          ) : (
+            );
+          })
+        ) : (
           <Loading>Loading ...</Loading>
-          )}
-        </div>
+        )}
       </Container>
     </>
   );
@@ -90,6 +86,70 @@ const ShopListPage: React.FC = () => {
 
 export default ShopListPage;
 
-const Container = styled.div``;
+const Container = styled.div`
+  background-color: #fef9e8;
+  height: 100vh;
+`;
 
-const Image = styled.img``;
+const ShopSection = styled.div`
+  box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
+  width: 80%;
+  margin: 0 auto 1.5rem;
+`;
+
+const ShopCard = styled.div`
+  display: flex;
+  padding: 20px;
+  width: 100%;
+
+  background-color: #fff;
+`;
+
+const ShopInfo = styled.div`
+  width: 100%;
+`;
+const Title = styled.h1`
+  color: #ffaf69;
+`;
+
+const ShopDetail = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  //要素が増えたら変更したい
+  padding-bottom: 30px;
+`;
+
+const ShopGenre = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ShopImage = styled.div`
+  display: inline-block;
+  width: 50%;
+  height: 15rem;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+`;
+
+const ShopAccess = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+const ShopItem = styled.div`
+  font-size: 18px;
+`;
+
+const Loading = styled.div`
+  width: 100%;
+  height: 100%;
+
+  background-color: #fff;
+  font-size: 5rem;
+`;
