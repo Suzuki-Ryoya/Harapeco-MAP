@@ -45,7 +45,7 @@ const ShopListPage: React.FC = () => {
                 <Link
                   key={shop.id}
                   href={{
-                    pathname: '/shops/[shopId]',
+                    pathname: `shops/${shop.id}`,
                     query: { shopId: shop.id },
                   }}
                 >
