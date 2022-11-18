@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { start } from 'repl';
+import styled from 'styled-components';
 
 interface props {
   currentPageNumber: number;
@@ -22,7 +23,7 @@ export const Pagination: React.FC<props> = ({
   const start = startNumber + 10;
 
   return (
-    <div className="flex px-3 my-12">
+    <Component>
       {currentPageNumber !== 1 && (
         <Link
           href={{
@@ -38,6 +39,14 @@ export const Pagination: React.FC<props> = ({
           次のページ
         </Link>
       )}
-    </div>
+    </Component>
   );
 };
+
+const Component = styled.div`
+  width: 100%;
+  height: 100px;
+
+  text-align: center;
+  color: #595960;
+`;
