@@ -21,13 +21,11 @@ const ShopListPage: React.FC = () => {
   const lat = String(data?.coords.latitude);
   const lng = String(data?.coords.longitude);
   const range = String(router.query.ran);
+  const start = String(router.query.start);
+  const startNumber = Number(router.query.start);
 
-  useEffect(() => {
-    const fetchShops = async () => {
-      const response = await fetcher(
-        `http://localhost:3000/api/search?lat=${encodeURI(
-          lat,
-        )}3&lng=${encodeURI(lng)}&ran=${encodeURI(range)}`,
+  const currentPageNumber =
+    startNumber === 1 ? startNumber : (startNumber - 1) / 10 + 1;
       );
       setShops(response.results.shop);
     };
@@ -75,6 +73,14 @@ const ShopListPage: React.FC = () => {
         ) : (
           <Loading>Loading ...</Loading>
         )}
+        <Pagination
+          currentPageNumber={currentPageNumber}
+          maxpageNumber={Math.ceil(
+            shops ? Number(shops.results.results_available) / 9 : 0,
+          )}
+          range={range}
+          startNumber={startNumber}
+        ></Pagination>
       </Container>
     </>
   );
