@@ -41,6 +41,8 @@ const rangeOptions: SelectOption[] = [
 ];
 export const GeolocationSearchForm: React.FC = () => {
   const [value, setValue] = useState<string>('');
+  const router = useRouter();
+  const start = '1';
 
   const selectOnchange = (value: string | undefined) => {
     if (value === undefined) {
@@ -48,8 +50,6 @@ export const GeolocationSearchForm: React.FC = () => {
     }
     setValue(value);
   };
-
-  const router = useRouter();
 
   const { handleSubmit } = useForm({
     defaultValues: {
@@ -59,7 +59,7 @@ export const GeolocationSearchForm: React.FC = () => {
 
   const onSubmit = () => {
     const ran = value;
-    router.push({ pathname: '/shops', query: { ran } });
+    router.push({ pathname: '/shops', query: { ran, start } });
   };
 
   return (

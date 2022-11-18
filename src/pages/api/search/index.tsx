@@ -12,12 +12,14 @@ const handler = async (
   const lat = req.query.lat;
   const lng = req.query.lng;
   const ran = req.query.ran;
+  const start = req.query.start;
 
   if (
     typeof process.env.API_URL_ROOT === 'undefined' ||
     typeof lat === 'undefined' ||
     typeof lng === 'undefined' ||
-    typeof ran === 'undefined'
+    typeof ran === 'undefined' ||
+    typeof start === 'undefined'
   ) {
     return;
   }
@@ -25,13 +27,14 @@ const handler = async (
   const latString: string = Array.isArray(lat) ? lat.join(' ') : lat;
   const lngString: string = Array.isArray(lng) ? lng.join(' ') : lng;
   const ranString: string = Array.isArray(ran) ? ran.join(' ') : ran;
+  const startString: string = Array.isArray(start) ? start.join(' ') : start;
 
   const API_URL =
     typeof lat === 'undefined' || typeof lng === 'undefined'
       ? API_URL_ROOT
       : `${API_URL_ROOT}&lat=${encodeURI(latString)}&lng=${encodeURI(
           lngString,
-        )}&range=${encodeURI(ranString)}`;
+        )}&range=${encodeURI(ranString)}&start=${encodeURI(startString)}`;
 
   if (typeof API_URL === 'undefined') return;
 

@@ -4,28 +4,23 @@ import { useEffect } from 'react';
 import fetcher from '@/utils/fetcher';
 import { Shop } from '@/types/shop';
 import styled from 'styled-components';
+import useSWR from 'swr';
 
 const Sample: React.FC = () => {
   const router = useRouter();
 
   // TODO: クエリを読み込むため、再レンダリングをするとshopIdが消えてしまう
   const shopId = String(router.query.shopId);
-  const [shops, setShops] = useState<Shop[]>([]);
-  useEffect(() => {
-    const fetchShops = async () => {
-      const response = await fetcher(
-        `http://localhost:3000/api/shop/?shopId=${encodeURI(shopId)}`,
-      );
-      setShops(response.results.shop);
-    };
-    fetchShops();
-  }, [shopId]);
 
+  const { data: shop } = useSWR(
+    `http://localhost:3000/api/shop/?shopId=${encodeURI(shopId)}`,
+    fetcher,
+  );
   return (
     <>
       <Container>
-        {shops ? (
-          shops.map((shop: Shop) => {
+        {shop ? (
+          shop.results.shop.map((shop: Shop) => {
             return (
               <ShopContent key={shop.id}>
                 <ShopInfoContent key={shop.id}>

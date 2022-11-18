@@ -8,6 +8,7 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import { GiWalk } from 'react-icons/gi';
 import { GrRestaurant } from 'react-icons/gr';
+import { Pagination } from '@/components/Pagination';
 
 const ShopListPage: React.FC = () => {
   const router = useRouter();
@@ -15,37 +16,37 @@ const ShopListPage: React.FC = () => {
   //現在地を呼び出す
   const { data } = useSWR('utils/geolocation', locationFetcher);
 
-  // shopsの配列に取得した店舗を入れていく
-  const [shops, setShops] = useState<Shop[]>();
-
   const lat = String(data?.coords.latitude);
   const lng = String(data?.coords.longitude);
   const range = String(router.query.ran);
+  const start = String(router.query.start);
+  const startNumber = Number(router.query.start);
 
-  useEffect(() => {
-    const fetchShops = async () => {
-      const response = await fetcher(
-        `http://localhost:3000/api/search?lat=${encodeURI(
-          lat,
-        )}3&lng=${encodeURI(lng)}&ran=${encodeURI(range)}`,
-      );
-      setShops(response.results.shop);
-    };
-    fetchShops();
-  }, [lat, lng, range]);
+  const currentPageNumber =
+    startNumber === 1 ? startNumber : (startNumber - 1) / 10 + 1;
+
+  const { data: shops } = useSWR(
+    `http://localhost:3000/api/search?lat=${encodeURI(lat)}3&lng=${encodeURI(
+      lng,
+    )}&ran=${encodeURI(range)}&start=${encodeURI(start)}`,
+    fetcher,
+  );
 
   //TODO cssのスタイルとUIの設計を行う
   return (
     <>
       <Container>
+        <ShopNumber>
+          {shops ? shops.results.results_available : <span>0</span>}件
+        </ShopNumber>
         {shops ? (
-          shops.map((shop: Shop) => {
+          shops.results.shop.map((shop: Shop) => {
             return (
               <ShopSection key={shop.id}>
                 <Link
                   key={shop.id}
                   href={{
-                    pathname: '/shops/[shopId]',
+                    pathname: `shops/${shop.id}`,
                     query: { shopId: shop.id },
                   }}
                 >
@@ -75,6 +76,14 @@ const ShopListPage: React.FC = () => {
         ) : (
           <Loading>Loading ...</Loading>
         )}
+        <Pagination
+          currentPageNumber={currentPageNumber}
+          maxpageNumber={Math.ceil(
+            shops ? Number(shops.results.results_available) / 9 : 0,
+          )}
+          range={range}
+          startNumber={startNumber}
+        ></Pagination>
       </Container>
     </>
   );
@@ -87,10 +96,16 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+const ShopNumber = styled.p`
+  text-align: center;
+`;
+
 const ShopSection = styled.div`
   box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
-  width: 80%;
+  width: 70%;
   margin: 0 auto 1.5rem;
+
+  color: #595960;
 `;
 
 const ShopCard = styled.div`

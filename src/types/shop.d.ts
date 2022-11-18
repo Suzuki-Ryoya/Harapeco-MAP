@@ -42,5 +42,7 @@ interface Buget {
 export interface ShopListResponseType {
   results: {
     shop: Shop[];
+    results_available: string;
+    result_start;
   };
 }
