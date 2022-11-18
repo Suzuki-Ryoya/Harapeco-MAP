@@ -36,8 +36,11 @@ const ShopListPage: React.FC = () => {
   return (
     <>
       <Container>
+        <ShopNumber>
+          {shops ? shops.results.results_available : <span>0</span>}件
+        </ShopNumber>
         {shops ? (
-          shops.map((shop: Shop) => {
+          shops.results.shop.map((shop: Shop) => {
             return (
               <ShopSection key={shop.id}>
                 <Link
@@ -91,6 +94,10 @@ export default ShopListPage;
 const Container = styled.div`
   background-color: #fef9e8;
   height: 100vh;
+`;
+
+const ShopNumber = styled.p`
+  text-align: center;
 `;
 
 const ShopSection = styled.div`
