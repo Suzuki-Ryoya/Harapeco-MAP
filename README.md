@@ -13,6 +13,10 @@
 cp .env.example .env
 ```
 
+### API_KEYについて
+リクルートwebサービスでAPI_KEYを取得する必要があります。
+取得したら.env.sampleファイルのAPI_KEYを変更してください
+
 ### Install dependencies
 yarnコマンドでパッケージをインストールします
 
