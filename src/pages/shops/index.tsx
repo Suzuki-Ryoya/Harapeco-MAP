@@ -102,8 +102,10 @@ const ShopNumber = styled.p`
 
 const ShopSection = styled.div`
   box-shadow: 0 1px 4px rgb(0 0 0 / 20%);
-  width: 80%;
+  width: 70%;
   margin: 0 auto 1.5rem;
+
+  color: #595960;
 `;
 
 const ShopCard = styled.div`
