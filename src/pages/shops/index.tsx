@@ -41,6 +41,7 @@ const ShopListPage: React.FC = () => {
   }, [lat, lng, range, start]);
 
   //TODO cssのスタイルとUIの設計を行う
+  //TODO ページングのMaxPageをしていないため、ページングの修正が必要
   return (
     <>
       <Container>
