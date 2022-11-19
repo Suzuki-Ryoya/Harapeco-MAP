@@ -1,12 +1,7 @@
-import { locationFetcher } from '@/utils/geolocation';
 import React, { useState } from 'react';
-import useSWR from 'swr';
 import styled from 'styled-components';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import { Navigate, useNavigate } from 'react-router-dom';
-import Router, { useRouter } from 'next/router';
-import fetcher from '@/utils/fetcher';
+import { useForm } from 'react-hook-form';
+import { useRouter } from 'next/router';
 import ReactSelect from 'react-select';
 import { CiForkAndKnife } from 'react-icons/ci';
 

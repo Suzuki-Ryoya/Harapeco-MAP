@@ -1,6 +1,3 @@
-import { SearchForm } from '@/components/SearchForm';
-import { useShopDataSWR } from '@/utils/hooks/useShopDataSWR';
-import { useUserInputKeywordState } from '@/utils/recoil/useUserInputKeywordState';
 import SearchPage from './search';
 
 interface Props {

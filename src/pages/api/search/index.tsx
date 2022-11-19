@@ -1,7 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import fetcher from '@/utils/fetcher';
-import useSWR from 'swr';
-import { locationFetcher } from '@/utils/geolocation';
 
 const handler = async (
   req: NextApiRequest,
