@@ -1,6 +1,5 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
-import { useEffect } from 'react';
+import React from 'react';
 import fetcher from '@/utils/fetcher';
 import { Shop } from '@/types/shop';
 import styled from 'styled-components';

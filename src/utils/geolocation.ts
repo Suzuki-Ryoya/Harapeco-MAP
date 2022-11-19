@@ -1,7 +1,4 @@
 import { PositionError, Position } from '@/types/geolocation';
-import { resolve } from 'path';
-import { env } from 'process';
-import { useEffect, useState, useRef } from 'react';
 
 // geolocation APIをラップ化してfetcherとしてuseSWRで呼び出す
 // TODO: APIディレクトリに入れたい

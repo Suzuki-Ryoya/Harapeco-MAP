@@ -25,22 +25,28 @@ const ShopListPage: React.FC = () => {
   const currentPageNumber =
     startNumber === 1 ? startNumber : (startNumber - 1) / 10 + 1;
 
-  const { data: shops } = useSWR(
-    `http://localhost:3000/api/search?lat=${encodeURI(lat)}3&lng=${encodeURI(
-      lng,
-    )}&ran=${encodeURI(range)}&start=${encodeURI(start)}`,
-    fetcher,
-  );
+  // shopsの配列に取得した店舗を入れていく
+  const [shops, setShops] = useState<Shop[]>();
+  useEffect(() => {
+    const fetchShops = async () => {
+      const response = await fetcher(
+        `http://localhost:3000/api/search?lat=${encodeURI(lat)}&lng=${encodeURI(
+          lng,
+        )}&ran=${encodeURI(range)}&start=${encodeURI(start)}`,
+      );
+      setShops(response.results.shop);
+      console.log(response);
+    };
+    fetchShops();
+  }, [lat, lng, range, start]);
 
   //TODO cssのスタイルとUIの設計を行う
+  //TODO ページングのMaxPageをしていないため、ページングの修正が必要
   return (
     <>
       <Container>
-        <ShopNumber>
-          {shops ? shops.results.results_available : <span>0</span>}件
-        </ShopNumber>
         {shops ? (
-          shops.results.shop.map((shop: Shop) => {
+          shops.map((shop: Shop) => {
             return (
               <ShopSection key={shop.id}>
                 <Link
@@ -78,9 +84,6 @@ const ShopListPage: React.FC = () => {
         )}
         <Pagination
           currentPageNumber={currentPageNumber}
-          maxpageNumber={Math.ceil(
-            shops ? Number(shops.results.results_available) / 9 : 0,
-          )}
           range={range}
           startNumber={startNumber}
         ></Pagination>
