@@ -48,7 +48,7 @@ const ShopListPage: React.FC = () => {
           {shops ? shops.results.results_available : <span>0</span>}件
         </ShopNumber>
         {shops ? (
-          shops.results.shop.map((shop: Shop) => {
+          shops.map((shop: Shop) => {
             return (
               <ShopSection key={shop.id}>
                 <Link
