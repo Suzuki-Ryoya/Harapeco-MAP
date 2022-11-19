@@ -31,9 +31,9 @@ const ShopListPage: React.FC = () => {
     const fetchShops = async () => {
       const response = await fetcher(
         `http://localhost:3000/api/search?lat=${encodeURI(lat)}&lng=${encodeURI(
-      lng,
-    )}&ran=${encodeURI(range)}&start=${encodeURI(start)}`,
-  );
+          lng,
+        )}&ran=${encodeURI(range)}&start=${encodeURI(start)}`,
+      );
       setShops(response.results.shop);
       console.log(response);
     };
@@ -45,9 +45,6 @@ const ShopListPage: React.FC = () => {
   return (
     <>
       <Container>
-        <ShopNumber>
-          {shops ? shops.results.results_available : <span>0</span>}件
-        </ShopNumber>
         {shops ? (
           shops.map((shop: Shop) => {
             return (
@@ -87,9 +84,6 @@ const ShopListPage: React.FC = () => {
         )}
         <Pagination
           currentPageNumber={currentPageNumber}
-          maxpageNumber={Math.ceil(
-            shops ? Number(shops.results.results_available) / 9 : 0,
-          )}
           range={range}
           startNumber={startNumber}
         ></Pagination>
