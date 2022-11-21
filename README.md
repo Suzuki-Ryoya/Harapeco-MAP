@@ -10,12 +10,13 @@
 以下のコマンドを実行してコピーしたあと、適宜内容を書き換えます。
 
 ```bash
-cp .env.example .env
+cp .env.exsample .env
 ```
 
 ### API_KEYについて
 リクルートwebサービスでAPI_KEYを取得する必要があります。
-取得したら.env.sampleファイルのAPI_KEYを変更してください
+取得したら.env.sampleファイルのAPI_KEYを変更してください。
+お手数ですが`large_area=Z011`は削除してから使用してください。
 
 ### Install dependencies
 yarnコマンドでパッケージをインストールします
